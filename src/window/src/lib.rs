@@ -421,6 +421,7 @@ pub struct WindowSettings {
     decorated: bool,
     controllers: bool,
     transparent: bool,
+    is_visible: bool,
 }
 
 impl WindowSettings {
@@ -449,6 +450,7 @@ impl WindowSettings {
             decorated: true,
             controllers: true,
             transparent: false,
+            is_visible: true,
         }
     }
 
@@ -817,6 +819,26 @@ impl WindowSettings {
     /// so that it can be used in method chaining.
     pub fn transparent(mut self, value: bool) -> Self {
         self.set_transparent(value);
+        self
+    }
+    
+    /// Gets whether built windows should be visible on creation.
+    pub fn get_is_visible(&self) -> bool {
+        self.is_visible
+    }
+
+    /// Sets whether built windows should be visible on creation.
+    pub fn set_is_visible(&mut self, value: bool) {
+        self.is_visible = value;
+    }
+
+    /// Sets whether built windows should be visible on creation.
+    ///
+    /// This method moves the current window data,
+    /// unlike [`set_is_visible()`](#method.set_is_visible),
+    /// so that it can be used in method chaining.
+    pub fn is_visible(mut self, value: bool) -> Self {
+        self.set_is_visible(value);
         self
     }
 }
